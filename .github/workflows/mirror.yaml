@@ -1,9 +1,10 @@
-name: Mirror with Git Subtree
+name: Mirror
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: [ "eslint" ]
+    types:
+      - completed
 
 permissions:
   contents: write
@@ -14,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout source repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Git
         run: |
