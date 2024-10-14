@@ -2,7 +2,7 @@ name: Mirror
 
 on:
   workflow_run:
-    workflows: [ "eslint" ]
+    workflows: ['eslint']
     types:
       - completed
 
@@ -38,11 +38,11 @@ jobs:
           else
             git subtree add --prefix=Test https://${TOKEN}@github.com/ViltardLeo/Test.git main --squash
           fi
-      
+
       - name: Push to central repository
         working-directory: mirror
         env:
           TOKEN: ${{ secrets.MIRRORING }}
-        run: |  
+        run: |
           git config --global url."https://${TOKEN}@github.com/".insteadOf "https://github.com/"
           git push origin main
