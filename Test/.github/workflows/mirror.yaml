@@ -33,7 +33,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.MIRRORING }}
         run: |
-          if [ -d "Test" ]; then
+          if [ -d "${GITHUB_REPOSITORY#*/}" ]; then
             git subtree pull --prefix=Test "https://${TOKEN}@github.com/ViltardLeo/Test.git" main --squash
           else
             git subtree add --prefix=Test "https://${TOKEN}@github.com/ViltardLeo/Test.git" main --squash
