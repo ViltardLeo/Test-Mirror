@@ -1,10 +1,6 @@
 name: Mirror
 
-on:
-  workflow_run:
-    workflows: ['eslint']
-    types:
-      - completed
+on: push
 
 permissions:
   contents: write
@@ -34,9 +30,9 @@ jobs:
           TOKEN: ${{ secrets.MIRRORING }}
         run: |
           if [ -d "${GITHUB_REPOSITORY#*/}" ]; then
-            git subtree pull --prefix=Test "https://${TOKEN}@github.com/ViltardLeo/Test.git" main --squash
+            git subtree pull --prefix=Test "https://${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" main --squash
           else
-            git subtree add --prefix=Test "https://${TOKEN}@github.com/ViltardLeo/Test.git" main --squash
+            git subtree add --prefix=Test "https://${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" main --squash
           fi
 
       - name: Push to central repository
