@@ -1,4 +1,4 @@
-﻿FROM node:20.17-alpine AS develop-stage
+﻿FROM node:latest-alpine AS develop-stage
 LABEL authors="Rhainas"
 
 WORKDIR /app
@@ -14,5 +14,6 @@ FROM nginx:1.27.2-alpine AS production-stage
 COPY --from=build-stage /app/dist/spa /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
-
-
+RUN useradd -m myuser
+USER myuser
+HEALTHCHECK CMD curl --fail http://localhost:3000 || exit 1

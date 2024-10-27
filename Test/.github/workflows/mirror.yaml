@@ -26,7 +26,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.MIRRORING }}
         run: |
-          git clone https://${TOKEN}@github.com/ViltardLeo/Test-Mirror.git mirror
+          git clone "https://${TOKEN}@github.com/ViltardLeo/Test-Mirror.git" mirror
 
       - name: Pull/Add subtree for actual repository
         working-directory: mirror
@@ -34,9 +34,9 @@ jobs:
           TOKEN: ${{ secrets.MIRRORING }}
         run: |
           if [ -d "Test" ]; then
-            git subtree pull --prefix=Test https://${TOKEN}@github.com/ViltardLeo/Test.git main --squash
+            git subtree pull --prefix=Test "https://${TOKEN}@github.com/ViltardLeo/Test.git" main --squash
           else
-            git subtree add --prefix=Test https://${TOKEN}@github.com/ViltardLeo/Test.git main --squash
+            git subtree add --prefix=Test "https://${TOKEN}@github.com/ViltardLeo/Test.git" main --squash
           fi
 
       - name: Push to central repository

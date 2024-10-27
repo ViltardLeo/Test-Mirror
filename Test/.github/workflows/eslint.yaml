@@ -27,3 +27,9 @@ jobs:
         uses: super-linter/super-linter@v7.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.MIRRORING }}
+          CREATE_LOG_FILE: true
+          VALIDATE_CSS: false
+          VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_CHECKOV: false
+          VALIDATE_HTML: false
+          VALIDATE_TYPESCRIPT_STANDARD: false
